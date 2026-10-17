@@ -50,6 +50,7 @@ class Bash:
     #Displays a welcome banner with ASCII art.
     def __welcome(self):
         welcome = [
+            "",
             r"__        _______ _     ____ ___  __  __ _____   _____ ___ ",
             r"\ \      / / ____| |   / ___/ _ \|  \/  | ____| |_   _/ _ \ ",
             r" \ \ /\ / /|  _| | |  | |  | | | | |\/| |  _|     | || | | |",
@@ -57,11 +58,18 @@ class Bash:
             r"   \_/\_/  |_____|_____\____\___/|_|  |_|_____|   |_| \___/ "
         ] # ASCII CODE
         bash = [
-            r" ___ ___ _   _ ___   ____    _    ____  _   _ ",
-            r"|_ _|_ _| | | |_ _| | __ )  / \  / ___|| | | |",
-            r" | | | || | | || |  |  _ \ / _ \ \___ \| |_| |",
-            r" | | | || |_| || |  | |_) / ___ \ ___) |  _  |",
-            r"|___|___|\___/|___| |____/_/   \_\____/|_| |_|"
+            r"     ___      ______  _______  _    _  ______  _____    ____   _   _ ",
+            r"    /   \    |  ____||__   __|| |  | ||  ____||  __ \  / __ \ | \ | |",
+            r"   /  ^  \   | |__      | |   | |__| || |__   | |__) || |  | ||  \| |",
+            r"  /  /_\  \  |  __|     | |   |  __  ||  __|  |  _  / | |  | ||     |",
+            r" /  _____  \ | |____    | |   | |  | || |____ | | \ \ | |__| || |\  |",
+            r"/__/     \__\|______|   |_|   |_|  |_||______||_|  \_\ \____/ |_| \_|",
+            "",                                     
+            r" ____    _    ____  _   _ ",
+            r"| __ )  / \  / ___|| | | |",
+            r"|  _ \ / _ \ \___ \| |_| |",
+            r"| |_) / ___ \ ___) |  _  |",
+            r"|____/_/   \_\____/|_| |_|"
         ] # ASCII CODE
         obj = [welcome, bash]
 
@@ -267,18 +275,18 @@ class Bash:
                 if result.stdout: # if normal output
                     print(result.stdout)
                 if result.stderr: # if error
-                    print(self.color_text(f'IIUI-Shell: {command}: command not found.', 'red'))
+                    print(self.color_text(f'AETHERON-Shell: {command}: command not found.', 'red'))
                     print(self.color_text("Type 'help' to check valid commands.", 'purple'))
                     print(self.color_text(result.stderr, 'purple'))
 
             except Exception as e:
                 print(self.color_text(f"Error executing command: {e}", 'red'))
-                print(f'IIUI-Shell: {command}: command not found.')
+                print(f'AETHERON-Shell: {command}: command not found.')
                 print("Type 'help' to check valid commands.")
 
         except Exception as e:
             print(self.color_text(f"Error executing command: {e}", 'red'))
-            print(f'IIUI-Shell: {command}: command not found.')
+            print(f'AETHERON-Shell: {command}: command not found.')
             print("Type 'help' to check valid commands.")
 
     def __display_help(self):
@@ -437,9 +445,9 @@ class Bash:
         history = []
 
         while True:
-            # Prompt: "user@host IIUI-Shell ~/path $ "
+            # Prompt: "user@host AETHERON-Shell ~/path $ "
             print(self.color_text(f"\n{getpass.getuser()}@{os.environ['COMPUTERNAME']} ", 'green'),
-                  self.color_text("IIUI-Shell ", 'purple'),
+                  self.color_text("AETHERON-Shell ", 'purple'),
                   self.color_text(f"~/{'/'.join(os.getcwd().split('\\')[3:])} ", 'yellow'))
             
             command = input("$ ").strip()
@@ -448,7 +456,7 @@ class Bash:
                 continue
 
             if command == 'exit':
-                print(self.color_text("Exiting IIUI-Shell. Goodbye!", 'crimson'))
+                print(self.color_text("Exiting AETHERON-Shell. Goodbye!", 'crimson'))
                 break
 
             history.append(command)
@@ -590,10 +598,10 @@ if __name__ == "__main__":
     
     except KeyboardInterrupt:
         # on any exception exit the code gracefully by printing message
-        sys.exit(bash.color_text("\nExiting IIUI-Shell. Goodbye!", 'crimson')) 
+        sys.exit(bash.color_text("\nExiting AETHERON-Shell. Goodbye!", 'crimson')) 
            
     except EOFError: # ctrl+D
-        sys.exit(bash.color_text("\nExiting IIUI-Shell. Goodbye!", 'crimson'))
+        sys.exit(bash.color_text("\nExiting AETHERON-Shell. Goodbye!", 'crimson'))
     
     except Exception as e:
         print(bash.color_text("Type 'help' to check valid commands.", 'purple'))
